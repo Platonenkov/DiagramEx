@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="DiagramEx.Components.Rectifier"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Path">
+                <Setter Property="StrokeThickness" Value="{Binding Thickness}"/>
+            </Style>
+        </Grid.Resources>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            <Path Grid.Row="0" Data="M 0 0 L 2 0" Stretch="Fill" Stroke="{Binding Foreground}" />
+                <Path Grid.Row="0" Grid.RowSpan="2" Data="M 1 0 L 2 2 L 0 2 Z" Stretch="Fill" Stroke="{Binding Foreground}" Fill="{Binding Foreground}" />
+            </Grid>
+    </Grid>
+</UserControl>

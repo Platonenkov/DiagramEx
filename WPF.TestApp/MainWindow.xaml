@@ -1,0 +1,99 @@
+﻿<Window x:Class="WPF.TestApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.TestApp"
+        xmlns:dEx="clr-namespace:DiagramEx.Components;assembly=DiagramEx"
+        xmlns:dc="clr-namespace:DiagramEx.Converters;assembly=DiagramEx"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Topmost="True">
+    
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <dEx:ArrowVertical Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                           Arrow="All"
+                           Height="100"
+                           ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                           Foreground="Green" 
+                           VerticalAlignment="Center"  HorizontalAlignment="Center"  />
+        <dEx:ArrowHorizontal Grid.Row="0"  Grid.Column="1"                            
+                             Arrow="All"
+                             Width="100"
+                             ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                             Foreground="Green" 
+                             VerticalAlignment="Center"  HorizontalAlignment="Center"  />
+        <dEx:Rectifier Grid.Row="0" Grid.Column="2"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Foreground="Green"
+                       Width="30" Height="30"/>
+        <Viewbox Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="5" Margin="100 20 0 0">
+            <Grid Width="200" Height="150">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <dEx:ArrowVertical Grid.Row="0" Grid.RowSpan="3" Arrow="Top" Background="Aqua"
+                                   Thickness="2"
+                                   ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                                   Foreground="Green" 
+                                   VerticalAlignment="Center"  HorizontalAlignment="Center"  />
+                <dEx:Rectifier Grid.Row="1"
+                               Thickness="2"
+                               VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                               Foreground="Green"
+                               Width="30" Height="30"/>
+                <dEx:ArrowHorizontal Grid.Row="2" 
+                                     Thickness="2"
+                                     Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={dc:Multiply Parameter=0.5}}"
+                                     Arrow="Left"
+                                     ArrowSizeHeight="10" ArrowSizeWidth="10"  
+                                     Foreground="Green" 
+                                     VerticalAlignment="Bottom"  HorizontalAlignment="Left"  />
+
+            </Grid>
+        </Viewbox>
+        <Grid Grid.Row="0" Grid.Column="3">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <dEx:ArrowVertical Grid.Row="0" Grid.RowSpan="3" Arrow="Top"
+                               Thickness="2"
+                               ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                               Foreground="Green" 
+                               VerticalAlignment="Center"  HorizontalAlignment="Center"  />
+            <dEx:Rectifier Grid.Row="1"
+                           Thickness="2"
+                           VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                           Foreground="Green"
+                           Width="20" Height="20"/>
+            <dEx:ArrowHorizontal Grid.Row="2"
+                                 Thickness="2"
+                                 Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={dc:Multiply Parameter=0.5}}"
+                                 Arrow="None"
+                                 ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                                 Foreground="Green" 
+                                 VerticalAlignment="Bottom"  HorizontalAlignment="Left"  />
+
+        </Grid>
+    </Grid>
+</Window>

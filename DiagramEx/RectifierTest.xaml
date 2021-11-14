@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="DiagramEx.RectifierTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:components="clr-namespace:DiagramEx.Components"
+             xmlns:converters="clr-namespace:DiagramEx.Converters"
+             mc:Ignorable="d" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Path">
+                <Setter Property="StrokeThickness" Value="{Binding Thickness}"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" >
+            <Grid Width="{Binding RectifierBlockSize}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="{Binding RectifierBlockSize}"/>
+                    <RowDefinition Height="{Binding RectifierBottomBranchSize}"/>
+                </Grid.RowDefinitions>
+                <Path Grid.Row="0" Data="M 0 0 L 1 0" Stretch="Fill" Stroke="{Binding RectifierBrush}" Margin="-.5 0"/>
+                <Path Grid.Row="1" Data="M 1 0 L 2 2 L 0 2 Z" Stretch="Fill" Stroke="{Binding RectifierBrush}" Fill="{Binding RectifierBrush}" />
+                <Path Grid.Row="2" Data="M 0 0 L 0 1" Stretch="Fill" Stroke="{Binding RectifierBrush}" Margin="0 -.5"/>
+            </Grid>
+        </DockPanel>
+
+        <Path Data="M 71 63 L 71 31 L 71 0" Stroke="{Binding Foreground}"
+              Visibility="{Binding CentralBranchVisible}"/>
+
+        <Path Data="M 71 63 L 71 31 L 0 31 L 0 0" Stroke="{Binding Foreground}" 
+              Visibility="{Binding LeftBranchVisible}"/>
+
+        <Path Data="M 71 63 L 71 31 L 142 31 L 142 0" x:Name="RightBranch" Stroke="{Binding Foreground}" 
+              Visibility="{Binding RightBranchVisible}"/>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="DiagramEx.Components.ArrowHorizontal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:DiagramEx.Converters"
+             mc:Ignorable="d"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid  VerticalAlignment="Center">
+        <Grid.Resources>
+            <Style TargetType="{x:Type Grid}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Arrow}" Value="All">
+                        <Setter Property="MinWidth" Value="{Binding ArrowSizeHeight}"/>
+                        <!--<Setter Property="Margin" Value="{Binding ArrowSizeWidth, 
+                            Converter={converters:ThicknessValueConverter Top=True, Bottom=True, Multiply=-.5 }}"/>-->
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Arrow}" Value="Left">
+                        <Setter Property="MinWidth" Value="{Binding ArrowSizeHeight}"/>
+                        <Setter Property="Margin" Value="{Binding ArrowSizeWidth, Converter={converters:ThicknessValueConverter Right=False, Bottom=True, Multiply=-.5 }}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Arrow}" Value="Right">
+                        <Setter Property="MinWidth" Value="{Binding ArrowSizeHeight}"/>
+                        <!--<Setter Property="Margin" Value="{Binding ArrowSizeWidth, Converter={converters:ThicknessValueConverter Top=True, Bottom=True, Multiply=-.5 }}"/>-->
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Arrow}" Value="None">
+                        <Setter Property="MinWidth" Value="{Binding Thickness}"/>
+                        <!--<Setter Property="Margin" Value="{Binding Thickness, Converter={converters:ThicknessValueConverter Left=True, Right=True, Multiply=-1 }}"/>-->
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition >
+                <RowDefinition.Style>
+                    <Style TargetType="{x:Type RowDefinition}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Arrow}" Value="All">
+                                <Setter Property="Height" Value="{Binding ArrowSizeWidth}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Arrow}" Value="Left">
+                                <Setter Property="Height" Value="{Binding ArrowSizeWidth}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Arrow}" Value="Right">
+                                <Setter Property="Height" Value="{Binding ArrowSizeWidth}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Arrow}" Value="None">
+                                <Setter Property="Height" Value="{Binding Thickness}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RowDefinition.Style>
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding ArrowSizeHeight}"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{Binding ArrowSizeHeight}"/>
+        </Grid.ColumnDefinitions>
+
+        <Path Grid.Column="0"
+              Data="M 0 1 L 5 2 L 4 1 L 5 0 Z"
+              Stretch="Fill"
+              Stroke="{Binding Foreground}" Fill="{Binding Foreground}"
+              StrokeThickness="{Binding Thickness}">
+            <Path.Style>
+                <Style TargetType="Path">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Arrow}" Value="All">
+                            <Setter Property="Visibility" Value="Visible"/>
+
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Arrow}" Value="Left">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Arrow}" Value="Right">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Arrow}" Value="None">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Path.Style>
+        </Path>
+        <Path Grid.Column="0" Grid.ColumnSpan="3"
+              Stroke="{Binding Foreground}" 
+              Data="M 0 0 L 1 0"
+              Stretch="Fill"
+              StrokeThickness="{Binding Thickness}">
+            <Path.Style>
+                <Style TargetType="Path">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Arrow}" Value="All">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Arrow}" Value="Left">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Arrow}" Value="Right">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Arrow}" Value="None">
+                            <Setter Property="VerticalAlignment" Value="Bottom"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Path.Style>
+        </Path>
+        <Path Grid.Column="2"
+              Data="M 5 1 L 0 2 L 1 1 L 0 0 Z" 
+              Stroke="{Binding Foreground}" 
+              Fill="{Binding Foreground}" Stretch="Fill"
+              StrokeThickness="{Binding Thickness}">
+            <Path.Style>
+                <Style TargetType="Path">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Arrow}" Value="All">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Arrow}" Value="Right">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Arrow}" Value="Left">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Arrow}" Value="None">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Path.Style>
+        </Path>
+    </Grid>
+</UserControl>
