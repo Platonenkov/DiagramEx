@@ -121,6 +121,7 @@
             <dEx:Line Grid.Row="0" Grid.Column="0" Orientation="Vertical" Thickness="2" Foreground="Orange" HorizontalAlignment="Left"/>
             <dEx:Line Grid.Row="0" Grid.Column="0" Orientation="DiagonalLeft" Thickness="2" Foreground="Red" LineFill="RightOutLeftConnect" />
             <dEx:Line Grid.Row="1" Grid.Column="0" Orientation="Vertical" Thickness="2" Foreground="Green" HorizontalAlignment="Left"/>
+            <dEx:Line Grid.Row="1" Grid.Column="1" Orientation="Vertical" Thickness="2" Foreground="Green" HorizontalAlignment="Left" LineFill="Central" />
 
 
         </Grid>
