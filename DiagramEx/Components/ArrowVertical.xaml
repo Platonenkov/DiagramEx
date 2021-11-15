@@ -15,7 +15,7 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Arrow}" Value="Top">
                         <Setter Property="MinHeight" Value="{Binding ArrowSizeHeight}"/>
-                        <Setter Property="Margin" Value="{Binding Thickness, Converter={converters:ThicknessValueConverter Top=False, Bottom=True, Multiply=-.5 }}"/>
+                        <Setter Property="Margin" Value="{Binding Thickness, Converter={converters:ThicknessValueConverter Bottom=True, BottomMultiply=-.5 }}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Arrow}" Value="Bottom">
                         <Setter Property="MinHeight" Value="{Binding ArrowSizeHeight}"/>

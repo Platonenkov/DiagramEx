@@ -96,5 +96,33 @@
                                  VerticalAlignment="Bottom"  HorizontalAlignment="Left"  />
 
         </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="4" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <dEx:Line Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Thickness="2" Foreground="Red" VerticalAlignment="Bottom"/>
+            <dEx:Line Grid.Row="0" Grid.Column="2" Orientation="Vertical" Thickness="2" Foreground="Orange" HorizontalAlignment="Right"/>
+
+            <dEx:Line Grid.Row="1" Grid.Column="2" Orientation="DiagonalLeft" Thickness="2" Foreground="Green" LineFill="LeftOutRightConnect"/>
+            <dEx:Line Grid.Row="1" Grid.Column="1" Orientation="DiagonalRight" Thickness="2" Foreground="Blue" LineFill="LeftInRightOut"/>
+            <dEx:Line Grid.Row="1" Grid.Column="2" Orientation="Vertical" Thickness="2" Foreground="Red" HorizontalAlignment="Right"/>
+
+            <dEx:Line Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Thickness="2" Foreground="Green" VerticalAlignment="Top"/>
+            <dEx:Line Grid.Row="0" Grid.Column="1" Orientation="DiagonalRight" Thickness="2" Foreground="Blue" LineFill="Out"/>
+
+            <dEx:Line Grid.Row="0" Grid.Column="0" Orientation="Vertical" Thickness="2" Foreground="Orange" HorizontalAlignment="Left"/>
+            <dEx:Line Grid.Row="0" Grid.Column="0" Orientation="DiagonalLeft" Thickness="2" Foreground="Red" LineFill="RightOutLeftConnect" />
+            <dEx:Line Grid.Row="1" Grid.Column="0" Orientation="Vertical" Thickness="2" Foreground="Green" HorizontalAlignment="Left"/>
+
+
+        </Grid>
     </Grid>
 </Window>

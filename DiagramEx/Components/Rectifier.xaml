@@ -6,7 +6,7 @@
              xmlns:converters="clr-namespace:DiagramEx.Converters"
              mc:Ignorable="d" DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <DockPanel>
-        <TextBlock Foreground="{Binding RectifierNamePosition}"
+        <TextBlock Foreground="{Binding RectifierNameBrush}"
                    FontSize="{Binding FontSize}"
                    FontFamily="{Binding FontFamily}"
                    FontWeight="{Binding FontWeight}"
@@ -21,12 +21,12 @@
                             <Setter Property="DockPanel.Dock" Value="Left"/>
                             <Setter Property="FlowDirection" Value="RightToLeft"/>
                             <Setter Property="TextAlignment" Value="Right"/>
-                            <Setter Property="Margin" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:ThicknessValueConverter Left=True, Multiply=-1}}"/>
+                            <Setter Property="Margin" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:ThicknessValueConverter Left=True, LeftMultiply=-1}}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding RectifierNamePosition}" Value="Right">
                             <Setter Property="DockPanel.Dock" Value="Right"/>
                             <Setter Property="TextAlignment" Value="Left"/>
-                            <Setter Property="Margin" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:ThicknessValueConverter Right=True, Multiply=-1}}"/>
+                            <Setter Property="Margin" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:ThicknessValueConverter Right=True, RightMultiply=-1}}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

@@ -12,7 +12,7 @@ namespace DiagramEx.Components
         {
             InitializeComponent();
         }
-        #region ElectricalPathThickness : double - Толщина
+        #region Thickness : double - Толщина
 
         /// <summary>Толщина</summary>
         public static readonly DependencyProperty ThicknessProperty =

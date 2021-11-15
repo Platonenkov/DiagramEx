@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="DiagramEx.Components.Line"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DiagramEx.Components"
+             xmlns:converters="clr-namespace:DiagramEx.Converters"
+             mc:Ignorable="d"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Path StrokeThickness="{Binding Thickness}" Stretch="Fill" Stroke="{Binding Foreground}">
+            <Path.Style>
+                <Style TargetType="{x:Type Path}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Orientation}" Value="Horizontal">
+                            <Setter Property="Data" Value="M 0 0 1 0"/>
+                            <Setter Property="Margin" Value="{Binding Thickness, Converter={converters:ThicknessValueConverter Left=True, Right=True, LeftMultiply=-.5,RightMultiply=-.5}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Orientation}" Value="Vertical">
+                            <Setter Property="Data" Value="M 0 0 0 1"/>
+                            <Setter Property="Margin" Value="{Binding Thickness, Converter={converters:ThicknessValueConverter Top=True,Bottom=True, TopMultiply=-.5, BottomMultiply=-.5}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Orientation}" Value="DiagonalLeft">
+                            <Setter Property="Data" Value="M 0 0 1 1"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Orientation}" Value="DiagonalRight">
+                            <Setter Property="Data" Value="M 1 0 0 1"/>
+                        </DataTrigger>
+
+                        <!--#region Left Right-->
+
+                        <DataTrigger Binding="{Binding LineFill}" Value="None">
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="Central">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.5, Right=True, RightMultiply=-.5, Top=True, TopMultiply=-.5, Bottom=True,BottomMultiply=-.5}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="Out">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.7, Right=True, RightMultiply=-.7, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="RightOut">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Right=True, RightMultiply=-.7, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="LeftOut">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.7, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding LineFill}" Value="In">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, Right=True, LeftMultiply=-.3, RightMultiply=-.3, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="LeftIn">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.3, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="RightIn">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Right=True, RightMultiply=-.3, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding LineFill}" Value="Connect">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, Right=True, LeftMultiply=.3, RightMultiply=.3, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="LeftConnect">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=.3, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="RightConnect">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Right=True, RightMultiply=.3, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding LineFill}" Value="LeftInRightOut">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.3,Right=True, RightMultiply=-.7,  Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="RightInLeftOut">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.7, Right=True, RightMultiply=-.3, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="LeftInRightConnect">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.3,Right=True, RightMultiply=.3,  Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="RightInLeftConnect">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=.3, Right=True, RightMultiply=-.3, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="LeftOutRightConnect">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.7,Right=True, RightMultiply=.3,  Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="RightOutLeftConnect">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=.3, Right=True, RightMultiply=-.7, Top=True, TopMultiply=-.05, Bottom=True,BottomMultiply=-.05}}"/>
+                        </DataTrigger>
+
+                        <!--#endregion-->
+                        <!--#region Top Bottom-->
+
+                        <DataTrigger Binding="{Binding LineFill}" Value="TopLeftBottomLeft">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.3, Right=True, RightMultiply=-.725, Top=True, TopMultiply=-.95, Bottom=True,BottomMultiply=-.95}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="TopLeftBottomRight">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.3, Right=True, RightMultiply=-.3, Top=True, TopMultiply=-.95, Bottom=True,BottomMultiply=-.95}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="TopLeftBottomCenter">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.3, Right=True, RightMultiply=-.5, Top=True, TopMultiply=-.95, Bottom=True,BottomMultiply=-.5}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="TopRightBottomLeft">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.725, Right=True, RightMultiply=-.725, Top=True, TopMultiply=-.95, Bottom=True,BottomMultiply=-.95}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="TopRightBottomRight">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.725, Right=True, RightMultiply=-.3, Top=True, TopMultiply=-.95, Bottom=True,BottomMultiply=-.95}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="TopRightBottomCenter">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.725, Right=True, RightMultiply=-.5, Top=True, TopMultiply=-.95, Bottom=True,BottomMultiply=-.5}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="TopCenterBottomLeft">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.5, Right=True, RightMultiply=-.725, Top=True, TopMultiply=-.5, Bottom=True,BottomMultiply=-.95}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="TopCenterBottomRight">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.5, Right=True, RightMultiply=-.3, Top=True, TopMultiply=-.5, Bottom=True,BottomMultiply=-.95}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding LineFill}" Value="TopCenterBottomCenter">
+                            <Setter Property="Margin" 
+                                    Value="{Binding Thickness, Converter={converters:ThicknessValueConverter
+                                Left=True, LeftMultiply=-.5, Right=True, RightMultiply=-.5, Top=True, TopMultiply=-.5, Bottom=True,BottomMultiply=-.5}}"/>
+                        </DataTrigger>
+
+
+                        <!--#endregion-->
+
+                    </Style.Triggers>
+                </Style>
+            </Path.Style>
+        </Path>
+    </Grid>
+</UserControl>
