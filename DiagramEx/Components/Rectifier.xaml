@@ -3,20 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:DiagramEx.Converters"
              mc:Ignorable="d" DataContext="{Binding RelativeSource={RelativeSource Self}}">
-    <Grid>
-        <Grid.Resources>
-            <Style TargetType="Path">
-                <Setter Property="StrokeThickness" Value="{Binding Thickness}"/>
-            </Style>
-        </Grid.Resources>
+    <DockPanel>
+        <TextBlock Foreground="{Binding RectifierNamePosition}"
+                   FontSize="{Binding FontSize}"
+                   FontFamily="{Binding FontFamily}"
+                   FontWeight="{Binding FontWeight}"
+                   FontStyle="{Binding FontStyle}"
+                   VerticalAlignment="Center">
+            <TextBlock Text=" "/>
+            <TextBlock Text="{Binding RectifierName}"/>
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RectifierNamePosition}" Value="Left">
+                            <Setter Property="DockPanel.Dock" Value="Left"/>
+                            <Setter Property="FlowDirection" Value="RightToLeft"/>
+                            <Setter Property="TextAlignment" Value="Right"/>
+                            <Setter Property="Margin" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:ThicknessValueConverter Left=True, Multiply=-1}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RectifierNamePosition}" Value="Right">
+                            <Setter Property="DockPanel.Dock" Value="Right"/>
+                            <Setter Property="TextAlignment" Value="Left"/>
+                            <Setter Property="Margin" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:ThicknessValueConverter Right=True, Multiply=-1}}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Grid Width="{Binding Size}" Height="{Binding Size}">
+            <Grid.Resources>
+                <Style TargetType="Path">
+                    <Setter Property="StrokeThickness" Value="{Binding Thickness}"/>
+                </Style>
+            </Grid.Resources>
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-            <Path Grid.Row="0" Data="M 0 0 L 2 0" Stretch="Fill" Stroke="{Binding Foreground}" />
+                <Path Grid.Row="0" Data="M 0 0 L 2 0" Stretch="Fill" Stroke="{Binding Foreground}" />
                 <Path Grid.Row="0" Grid.RowSpan="2" Data="M 1 0 L 2 2 L 0 2 Z" Stretch="Fill" Stroke="{Binding Foreground}" Fill="{Binding Foreground}" />
             </Grid>
-    </Grid>
+        </Grid>
+    </DockPanel>
+    
 </UserControl>

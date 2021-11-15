@@ -85,7 +85,8 @@
                            Thickness="2"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center"
                            Foreground="Green"
-                           Width="20" Height="20"/>
+                           Size="20"
+                           RectifierName="TRU" FontSize="10" RectifierNamePosition="Left" RectifierNameBrush="Green"/>
             <dEx:ArrowHorizontal Grid.Row="2"
                                  Thickness="2"
                                  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={dc:Multiply Parameter=0.5}}"
