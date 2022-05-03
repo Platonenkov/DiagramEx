@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="DiagramEx.Components.RoundTextMarker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DiagramEx.Components"
+             mc:Ignorable="d"
+             d:DesignHeight="200"
+             d:DesignWidth="200">
+    <Grid RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <RotateTransform Angle="{Binding Angle, RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}" />
+        </Grid.RenderTransform>
+        <TextBlock Text="{Binding TextMarkerValue, RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}"
+                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}"
+                   FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}"
+                   FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}"
+                   FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}"
+                   FontStretch="{Binding FontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}"
+                   FontStyle="{Binding FontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}"
+                   Margin="{Binding TextMarkerMargin,
+            RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <RotateTransform Angle="{Binding Angle,Converter={Multiply -1}, RelativeSource={RelativeSource AncestorType={x:Type local:RoundTextMarker}}}" />
+            </TextBlock.RenderTransform>
+        </TextBlock>
+    </Grid>
+</UserControl>

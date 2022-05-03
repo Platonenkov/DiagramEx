@@ -27,22 +27,18 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <dEx:ArrowVertical Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
-                           Arrow="All"
+        <dEx:ArrowControl Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                           ArrowOrientation="TopBottom"
                            Height="100"
-                           ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                           ArrowSize="10"  
                            Foreground="Green" 
                            VerticalAlignment="Center"  HorizontalAlignment="Center"  />
-        <dEx:ArrowHorizontal Grid.Row="0"  Grid.Column="1"                            
-                             Arrow="All"
+        <dEx:ArrowControl Grid.Row="0"  Grid.Column="1"                            
+                             ArrowOrientation="LeftRight"
                              Width="100"
-                             ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                             ArrowSize="10"  
                              Foreground="Green" 
                              VerticalAlignment="Center"  HorizontalAlignment="Center"  />
-        <dEx:Rectifier Grid.Row="0" Grid.Column="2"
-                       VerticalAlignment="Center" HorizontalAlignment="Center"
-                       Foreground="Green"
-                       Width="30" Height="30"/>
         <Viewbox Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="5" Margin="100 20 0 0">
             <Grid Width="200" Height="150">
                 <Grid.RowDefinitions>
@@ -50,21 +46,16 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <dEx:ArrowVertical Grid.Row="0" Grid.RowSpan="3" Arrow="Top" Background="Aqua"
+                <dEx:ArrowControl Grid.Row="0" Grid.RowSpan="3" ArrowOrientation="Top" Background="Aqua"
                                    Thickness="2"
-                                   ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                                   ArrowSize="10"
                                    Foreground="Green" 
                                    VerticalAlignment="Center"  HorizontalAlignment="Center"  />
-                <dEx:Rectifier Grid.Row="1"
-                               Thickness="2"
-                               VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                               Foreground="Green"
-                               Width="30" Height="30"/>
-                <dEx:ArrowHorizontal Grid.Row="2" 
+                <dEx:ArrowControl Grid.Row="2" 
                                      Thickness="2"
-                                     Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={dc:Multiply Parameter=0.5}}"
-                                     Arrow="Left"
-                                     ArrowSizeHeight="10" ArrowSizeWidth="10"  
+                                     Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={Multiply Parameter=0.5}}"
+                                     ArrowOrientation="Left"
+                                     ArrowSize="10"
                                      Foreground="Green" 
                                      VerticalAlignment="Bottom"  HorizontalAlignment="Left"  />
 
@@ -76,22 +67,16 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <dEx:ArrowVertical Grid.Row="0" Grid.RowSpan="3" Arrow="Top"
+            <dEx:ArrowControl Grid.Row="0" Grid.RowSpan="3" ArrowOrientation="Top"
                                Thickness="2"
-                               ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                               ArrowSize="10" 
                                Foreground="Green" 
                                VerticalAlignment="Center"  HorizontalAlignment="Center"  />
-            <dEx:Rectifier Grid.Row="1"
-                           Thickness="2"
-                           VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                           Foreground="Green"
-                           Size="20"
-                           RectifierName="TRU" FontSize="10" RectifierNamePosition="Left" RectifierNameBrush="Green"/>
-            <dEx:ArrowHorizontal Grid.Row="2"
+            <dEx:ArrowControl Grid.Row="2"
                                  Thickness="2"
-                                 Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={dc:Multiply Parameter=0.5}}"
-                                 Arrow="None"
-                                 ArrowSizeHeight="10" ArrowSizeWidth="5"  
+                                 Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={Multiply Parameter=0.5}}"
+                                 ArrowOrientation="None"
+                                 ArrowSize="10" 
                                  Foreground="Green" 
                                  VerticalAlignment="Bottom"  HorizontalAlignment="Left"  />
 
@@ -108,20 +93,20 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <dEx:Line Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Thickness="2" Foreground="Red" VerticalAlignment="Bottom"/>
-            <dEx:Line Grid.Row="0" Grid.Column="2" Orientation="Vertical" Thickness="2" Foreground="Orange" HorizontalAlignment="Right"/>
+            <dEx:SimpleLine Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Thickness="2" Foreground="Red" VerticalAlignment="Bottom"/>
+            <dEx:SimpleLine Grid.Row="0" Grid.Column="2" Orientation="Vertical" Thickness="2" Foreground="Orange" HorizontalAlignment="Right"/>
 
-            <dEx:Line Grid.Row="1" Grid.Column="2" Orientation="DiagonalLeft" Thickness="2" Foreground="Green" LineFill="LeftOutRightConnect"/>
-            <dEx:Line Grid.Row="1" Grid.Column="1" Orientation="DiagonalRight" Thickness="2" Foreground="Blue" LineFill="LeftInRightOut"/>
-            <dEx:Line Grid.Row="1" Grid.Column="2" Orientation="Vertical" Thickness="2" Foreground="Red" HorizontalAlignment="Right"/>
+            <dEx:SimpleLine Grid.Row="1" Grid.Column="2" Orientation="DiagonalLeft" Thickness="2" Foreground="Green" LineFill="LeftOutRightConnect"/>
+            <dEx:SimpleLine Grid.Row="1" Grid.Column="1" Orientation="DiagonalRight" Thickness="2" Foreground="Blue" LineFill="LeftInRightOut"/>
+            <dEx:SimpleLine Grid.Row="1" Grid.Column="2" Orientation="Vertical" Thickness="2" Foreground="Red" HorizontalAlignment="Right"/>
 
-            <dEx:Line Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Thickness="2" Foreground="Green" VerticalAlignment="Top"/>
-            <dEx:Line Grid.Row="0" Grid.Column="1" Orientation="DiagonalRight" Thickness="2" Foreground="Blue" LineFill="Out"/>
+            <dEx:SimpleLine Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Thickness="2" Foreground="Green" VerticalAlignment="Top"/>
+            <dEx:SimpleLine Grid.Row="0" Grid.Column="1" Orientation="DiagonalRight" Thickness="2" Foreground="Blue" LineFill="Out"/>
 
-            <dEx:Line Grid.Row="0" Grid.Column="0" Orientation="Vertical" Thickness="2" Foreground="Orange" HorizontalAlignment="Left"/>
-            <dEx:Line Grid.Row="0" Grid.Column="0" Orientation="DiagonalLeft" Thickness="2" Foreground="Red" LineFill="RightOutLeftConnect" />
-            <dEx:Line Grid.Row="1" Grid.Column="0" Orientation="Vertical" Thickness="2" Foreground="Green" HorizontalAlignment="Left"/>
-            <dEx:Line Grid.Row="1" Grid.Column="1" Orientation="Vertical" Thickness="2" Foreground="Green" HorizontalAlignment="Left" LineFill="Central" />
+            <dEx:SimpleLine Grid.Row="0" Grid.Column="0" Orientation="Vertical" Thickness="2" Foreground="Orange" HorizontalAlignment="Left"/>
+            <dEx:SimpleLine Grid.Row="0" Grid.Column="0" Orientation="DiagonalLeft" Thickness="2" Foreground="Red" LineFill="RightOutLeftConnect" />
+            <dEx:SimpleLine Grid.Row="1" Grid.Column="0" Orientation="Vertical" Thickness="2" Foreground="Green" HorizontalAlignment="Left"/>
+            <dEx:SimpleLine Grid.Row="1" Grid.Column="1" Orientation="Vertical" Thickness="2" Foreground="Green" HorizontalAlignment="Left" LineFill="Central" />
 
 
         </Grid>

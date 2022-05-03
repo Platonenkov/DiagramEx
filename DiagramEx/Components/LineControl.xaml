@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="DiagramEx.Components.LineControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DiagramEx.Components"
+             xmlns:converters="clr-namespace:DiagramEx.Converters"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="local:SimpleLine">
+            <Setter Property="Thickness"
+                    Value="{Binding Thickness, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinitionCollapsable>
+                <RowDefinitionCollapsable.Visible>
+                    <NestedBinding Converter="{converters:OrMulty}">
+                        <NestedBinding Converter="{converters:AndMulty}">
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}"
+                                     Path="HLeftLineWidth"
+                                     Converter="{GreaterThan Value=0}" />
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}"
+                                     Path="TopLeftHeight"
+                                     Converter="{GreaterThan Value=0}" />
+                        </NestedBinding>
+                        <NestedBinding Converter="{converters:AndMulty}">
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}"
+                                     Path="HRightLineWidth"
+                                     Converter="{GreaterThan Value=0}" />
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}"
+                                     Path="TopRightHeight"
+                                     Converter="{GreaterThan Value=0}" />
+                        </NestedBinding>
+                        <Binding RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}"
+                                 Path="TopCentralHeight"
+                                 Converter="{GreaterThan Value=0}" />
+                    </NestedBinding>
+                </RowDefinitionCollapsable.Visible>
+            </RowDefinitionCollapsable>
+            <RowDefinitionCollapsable />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinitionCollapsible Width="{Binding HLeftLineWidth, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"/>
+            <ColumnDefinitionCollapsible Width="{Binding HRightLineWidth, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                                         Visible="{Binding HRightLineWidth, Converter={GreaterThan Value=0}, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}" />
+        </Grid.ColumnDefinitions>
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Horizontal"
+                          VerticalAlignment="Top"
+                          Visibility="{Binding LeftVisible, Converter={Bool2Visibility Collapsed=False}, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Width="{Binding HLeftLineWidth, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="1"
+                          Grid.Column="0" />
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Horizontal"
+                          VerticalAlignment="Top"
+                          Visibility="{Binding RightVisible, Converter={Bool2Visibility Collapsed=False}, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Width="{Binding HRightLineWidth, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="1"
+                          Grid.Column="1" />
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Vertical"
+                          VerticalAlignment="Bottom"
+                          HorizontalAlignment="Left"
+                          Visibility="{Binding LeftVisible, Converter={Bool2Visibility Collapsed=True}, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Height="{Binding TopLeftHeight, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="0"
+                          Grid.Column="0" />
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Vertical"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Left"
+                          Height="{Binding BottomLeftHeight, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="1"
+                          Grid.Column="0">
+            <local:SimpleLine.Visibility>
+                <NestedBinding Converter="{CombineMulti First={converters:AndMulty}, Then={Bool2Visibility Collapsed=True}}">
+                    <Binding Path="HLeftLineWidth" RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}" Converter="{GreaterThan Value=0}"/>
+                    <Binding Path="LeftVisible" RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}"/>
+                </NestedBinding>
+            </local:SimpleLine.Visibility>
+        </local:SimpleLine>
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Vertical"
+                          LineFill="Central"
+                          VerticalAlignment="Bottom"
+                          HorizontalAlignment="Right"
+                          Height="{Binding TopCentralHeight, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="0"
+                          Grid.Column="0" />
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Vertical"
+                          LineFill="Central"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                          Height="{Binding BottomCentralHeight, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="1"
+                          Grid.Column="0" />
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Vertical"
+                          VerticalAlignment="Bottom"
+                          HorizontalAlignment="Right"
+                          Visibility="{Binding RightVisible, Converter={Bool2Visibility Collapsed=True}, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Height="{Binding TopRightHeight, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="0"
+                          Grid.Column="1"/>
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Vertical"
+                          HorizontalAlignment="Right"
+                          VerticalAlignment="Top"
+                          Height="{Binding BottomRightHeight, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="1"
+                          Grid.Column="1">
+            <local:SimpleLine.Visibility>
+                <NestedBinding Converter="{CombineMulti First={converters:AndMulty}, Then={Bool2Visibility Collapsed=True}}">
+                    <Binding Path="HRightLineWidth"
+                             RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}"
+                             Converter="{GreaterThan Value=0}" />
+                    <Binding Path="RightVisible"
+                             RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}" />
+                </NestedBinding>
+            </local:SimpleLine.Visibility>
+        </local:SimpleLine>
+
+    </Grid>
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinitionCollapsable>
+                <RowDefinitionCollapsable.Visible>
+                    <MultiBinding Converter="{converters:OrMulty}">
+                        <Binding RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}"
+                                 Path="TopHeight"
+                                 Converter="{GreaterThan Value=0}"/>
+                        <Binding RelativeSource="{RelativeSource AncestorType={x:Type local:LineControl}}"
+                                 Path="Width"
+                                 Converter="{GreaterThan Value=0}"/>
+                    </MultiBinding>
+                </RowDefinitionCollapsable.Visible>
+            </RowDefinitionCollapsable>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinitionCollapsible Width="Auto" 
+                                         Visible="{Binding TopHeight, Converter={GreaterThan Value=0}, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"/>
+        </Grid.ColumnDefinitions>
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Thickness="{Binding Thickness, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Horizontal"
+                          VerticalAlignment="Bottom"
+                          Width="{Binding LineWidth, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="0"
+                          Grid.Column="0" />
+
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Thickness="{Binding Thickness, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Vertical"
+                          VerticalAlignment="Bottom"
+                          HorizontalAlignment="Left"
+                          Height="{Binding TopHeight, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="0"
+                          Grid.Column="1" />
+
+        <local:SimpleLine Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Thickness="{Binding Thickness, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Orientation="Vertical"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Left"
+                          Height="{Binding BottomHeight, RelativeSource={RelativeSource AncestorType={x:Type local:LineControl}}}"
+                          Grid.Row="1"
+                          Grid.Column="0" />
+    </Grid>-->
+</UserControl>

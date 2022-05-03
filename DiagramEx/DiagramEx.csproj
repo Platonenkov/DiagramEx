@@ -5,10 +5,19 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Update="Components\ArrowHorizontal.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <PackageReference Include="MathCore.WPF" Version="0.0.33" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Components\ArrowVertical - Копировать - Копировать.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>ArrowVertical - Копировать.xaml.cs</DependentUpon>
@@ -20,22 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Components\ArrowHorizontal.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Components\Generator.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="Components\GeneratorIcon.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
     <Page Update="RectifierTest.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="Components\Rectifier.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
     </Page>
     <Page Update="_Base.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
